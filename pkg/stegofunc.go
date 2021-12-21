@@ -7,8 +7,8 @@ import (
 	"strings"
 )
 
-// EmbedMessage func embeds given message into file-container so this message becomes "hidden" inside text file
-// It returns the number of bits which fit inside the container
+// EmbedMessage embeds given message into file-container so this message becomes hidden inside text file. It returns
+// the number of bits which fit inside the container.
 func EmbedMessage(f *os.File, message []byte, file *os.File) (int, error) {
 	reader := bufio.NewReader(f)
 	var bitCounter int
@@ -40,7 +40,7 @@ func EmbedMessage(f *os.File, message []byte, file *os.File) (int, error) {
 	return bitCounter, nil
 }
 
-// ExtractMessage func extracts "hidden" message from file-container and returns it
+// ExtractMessage extracts hidden message from file-container and returns it.
 func ExtractMessage(file *os.File) ([]byte, error) {
 	reader := bufio.NewReader(file)
 
@@ -63,8 +63,7 @@ func ExtractMessage(file *os.File) ([]byte, error) {
 	return message, nil
 }
 
-// embedInLine func embeds current message symbol in the end of line
-// bitCounter here acts as message index
+// embedInLine embeds current message bit to the end of line and returns the line. bitCounter here acts as message index.
 func embedInLine(line string, message []byte, bitCounter int, carriageReturnFlag bool) string {
 
 	if bitCounter >= len(message) {
@@ -87,7 +86,7 @@ func embedInLine(line string, message []byte, bitCounter int, carriageReturnFlag
 	}
 }
 
-// extractFromLine func extracts current hidden message symbol from the end of line and returns it
+// extractFromLine extracts hidden message bit from the end of current line and returns it.
 func extractFromLine(containerString string) (messageBit byte) {
 	if strings.HasSuffix(containerString, " \n") || strings.HasSuffix(containerString, " \r\n") {
 		return 0x01

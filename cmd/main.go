@@ -17,8 +17,8 @@ func main() {
 	tgFile, _ := CreateFile(tgFileName)
 	defer tgFile.Close()
 
-	//message := GenerateMessage("10100")
-	message := GenerateRandomMessage(100)
+	message := GenerateMessage("10100")
+	//message := GenerateRandomMessage(5)
 	fmt.Println("Message:", message)
 	fmt.Println("Begin embed message into file-container...")
 	bitCounter, _ := EmbedMessage(srcFile, message, tgFile)

@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-// OpenFile func opens file
+// OpenFile opens the file.
 func OpenFile(fileName string) (*os.File, error) {
 	file, err := os.Open(fileName)
 	if err != nil {
@@ -15,7 +15,7 @@ func OpenFile(fileName string) (*os.File, error) {
 	return file, nil
 }
 
-// CreateFile func creates file
+// CreateFile creates the file.
 func CreateFile(fileName string) (*os.File, error) {
 	file, err := os.Create(fileName)
 	if err != nil {
@@ -24,7 +24,7 @@ func CreateFile(fileName string) (*os.File, error) {
 	return file, nil
 }
 
-// GenerateMessage func generates specified binary sequence
+// GenerateMessage generates specified binary sequence.
 func GenerateMessage(sequence string) []byte {
 	message := make([]byte, len(sequence))
 
@@ -39,7 +39,7 @@ func GenerateMessage(sequence string) []byte {
 	return message
 }
 
-// GenerateRandomMessage func generates random binary sequence with specified length
+// GenerateRandomMessage generates random binary sequence with specified length.
 func GenerateRandomMessage(length int) []byte {
 	rMessage := make([]byte, length)
 
@@ -57,9 +57,9 @@ func GenerateRandomMessage(length int) []byte {
 	return rMessage
 }
 
-// PrepareLine func prepares container-line by removing all spaces at the end of string
-// with newline and carriage return symbols
-// This sequence will interfere correct message extracting during the extracting session
+// PrepareLine prepares container-line by removing all spaces at the end of string with newline and carriage return
+// symbols. Otherwise, this sequence will interfere correct message extracting during the extracting session. Returns
+// prepared line and carriage return presence flag.
 func PrepareLine(line string) (string, bool) {
 
 	var carriageReturnFlag bool
